@@ -1,0 +1,23 @@
+{
+  "name": "martinez",
+  "version": "0.0.1",
+  "description": "Mix local and remote resources",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mamapitufo/martinez.git"
+  },
+  "keywords": [
+    "proxy",
+    "http",
+    "server"
+  ],
+  "author": "Alberto Brealey-Guzman <alberto.brealey@gmail.com>",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/mamapitufo/martinez/issues"
+  },
+  "homepage": "https://github.com/mamapitufo/martinez#readme"
+}
