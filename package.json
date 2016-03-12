@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/mamapitufo/martinez/issues"
   },
-  "homepage": "https://github.com/mamapitufo/martinez#readme"
+  "homepage": "https://github.com/mamapitufo/martinez#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
