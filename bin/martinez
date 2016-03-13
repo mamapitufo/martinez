@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+const _ = require('lodash')
+const http = require('../lib/local-http')
+const argv = require('yargs')
+  .usage('Usage: $0 --local local_dir1 [--local local_dir2]')
+
+  .demand('l')
+  .alias('l', 'local')
+  .nargs('l', 1)
+  .describe('l', `Local directory. You can provide more than one, files
+            will be looked up in the order they were added.`)
+
+  .number('p')
+  .alias('p', 'port')
+  .default('p', 8080)
+  .describe('p', 'Listen on this port')
+
+  .string('a')
+  .alias('a', 'address')
+  .default('a', '0.0.0.0')
+  .describe('a', 'Listen on this address')
+
+  .help('h')
+  .alias('h', 'help')
+  .argv
+
+const localPaths = _.isArray(argv.local) ? argv.local : [ argv.local ]
+localPaths.forEach(path => http.addLocalPath(path))
+
+console.log(`Listening on ${argv.address}:${argv.port}`)
+http.start(argv.port, argv.address)
+
