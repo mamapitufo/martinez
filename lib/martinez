@@ -37,8 +37,7 @@ const localPaths = _.isArray(argv.local) ? argv.local : [ argv.local ]
 localPaths.forEach(addLocal)
 
 if (argv.remote) {
-  const proxy = createProxy(argv.remote)
-  app.use(proxy.web)
+  app.use(forwardTo(argv.remote))
 }
 
 console.log(`Listening on ${argv.address}:${argv.port}`)
@@ -56,5 +55,12 @@ function createProxy(target) {
     changeOrigin: true,
     secure: false // usually the local name won't compatible with remote cert
   })
+}
+
+function forwardTo(target) {
+  const proxy = createProxy(target)
+  return (req, res) => {
+    proxy.web(req, res)
+  }
 }
 
