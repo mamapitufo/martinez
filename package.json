@@ -22,6 +22,7 @@
   "homepage": "https://github.com/mamapitufo/martinez#readme",
   "dependencies": {
     "express": "^4.13.4",
+    "http-proxy": "^1.13.2",
     "lodash": "^4.6.1",
     "yargs": "^4.2.0"
   }

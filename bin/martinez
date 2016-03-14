@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
+const fs = require('fs')
+
 const _ = require('lodash')
-const http = require('../lib/local-http')
+const express = require('express')
+const httpProxy = require('http-proxy')
 const argv = require('yargs')
   .usage('Usage: $0 --local local_dir1 [--local local_dir2]')
 
@@ -9,7 +12,7 @@ const argv = require('yargs')
   .alias('l', 'local')
   .nargs('l', 1)
   .describe('l', `Local directory. You can provide more than one, files
-            will be looked up in the order they were added.`)
+            will be looked up in the order they were added`)
 
   .number('p')
   .alias('p', 'port')
@@ -21,13 +24,37 @@ const argv = require('yargs')
   .default('a', '0.0.0.0')
   .describe('a', 'Listen on this address')
 
+  .string('r')
+  .alias('r', 'remote')
+  .describe('r', 'Remote url to forward all non-local resources')
+
   .help('h')
   .alias('h', 'help')
   .argv
 
+const app = express()
 const localPaths = _.isArray(argv.local) ? argv.local : [ argv.local ]
-localPaths.forEach(path => http.addLocalPath(path))
+localPaths.forEach(addLocal)
+
+if (argv.remote) {
+  const proxy = createProxy(argv.remote)
+  app.use(proxy.web)
+}
 
 console.log(`Listening on ${argv.address}:${argv.port}`)
-http.start(argv.port, argv.address)
+app.listen(argv.port, argv.address)
+
+function addLocal(path) {
+  // FIXME: better error handling, until then: throw
+  fs.accessSync(path, fs.F_R_OK)
+  app.use(express.static(path))
+}
+
+function createProxy(target) {
+  return httpProxy.createProxyServer({
+    target: target,
+    changeOrigin: true,
+    secure: false // usually the local name won't compatible with remote cert
+  })
+}
 
