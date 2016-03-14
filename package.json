@@ -2,6 +2,9 @@
   "name": "martinez",
   "version": "0.0.1",
   "description": "Mix local and remote resources",
+  "bin": {
+    "martinez": "./lib/martinez"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
