@@ -1,6 +1,6 @@
 {
   "name": "martinez",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Mix local and remote resources",
   "bin": {
     "martinez": "./lib/martinez.js"
