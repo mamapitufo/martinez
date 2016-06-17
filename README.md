@@ -15,13 +15,15 @@ $ npm install --global martinez
 
 * `-l`, `--local`: Local directory. You can provide more than one and requests will be looked up in the order they
   were added. This is required.
-* `-a`, `--address`: Local address in which to listen for requests. Defaults to '0.0.0.0'.
-* `-p`, `--port`: Local port in which to listen for requests. Defaults to 8080.
+* `-a`, `--address`: Local address in which to listen for requests. Defaults to `'0.0.0.0'`.
+* `-p`, `--port`: Local port in which to listen for requests. Defaults to `8080`.
 * `-r`, `--remote`: Remote URL to forward all non-local resources (http or https).
 * `--strip-cookie-domain`: On forwarded requests, strip the `Domain` from any cookies set. This will allow the cookie
   to be set for any subsequent requests. Defaults to `true`.
-* `--proxy`: Proxy to use to connect to the remote resource.
-* `--allow-invalid-cert`: Allows self-signed SSL certificates. Defaults to false.
+* `-x`, `--proxy`: Proxy to use to connect to the remote resource.
+* `--allow-invalid-cert`: Allows self-signed SSL certificates. Defaults to `false`.
+* `--help`: Shows the help screen and exits.
+* `--version`: Shows the current version number and exits.
 
 # Examples
 
