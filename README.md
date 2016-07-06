@@ -13,16 +13,17 @@ $ npm install --global martinez
 
 # Options
 
-* `-l`, `--local target/`: Local directory. You can provide more than one and requests will be looked up in the order they
-  were added. This is required.
-* `-a`, `--address 10.101.1.101`: Local address in which to listen for requests. Defaults to `'0.0.0.0'`.
-* `-p`, `--port 80`: Local port in which to listen for requests. Defaults to `8080`.
-* `-r`, `--remote https://example.com/`: Remote URL to forward all non-local resources (http or https).
-* `--strip-cookie-domain`: On forwarded requests, strip the `Domain` from any cookies set. This will allow the cookie
-  to be set for any subsequent requests. Defaults to `true`.
-* `-x`, `--proxy http://localhost:3128`: Proxy to use to connect to the remote resource.
-* `--allow-invalid-cert`: Allows self-signed SSL certificates. Defaults to `false`.
-* `--config config.js`: Load a configuration from the given file. Only handles `rewrite` entries at the moment.
+* `-l`, `--local target/`, config `local`: Local directory. You can provide more than one and requests will be looked up
+  in the order they were added. This is required. For configuring multiple entries in the configuration object, use an array.
+* `-a`, `--address 10.101.1.101`, config `address`: Local address in which to listen for requests. Defaults to `'0.0.0.0'`.
+* `-p`, `--port 80`, config `port`: Local port in which to listen for requests. Defaults to `8080`.
+* `-r`, `--remote https://example.com/`, config `remote`: Remote URL to forward all non-local resources (http or https).
+* `--strip-cookie-domain`, config `stripCookieDomain`: On forwarded requests, strip the `Domain` from any cookies set. This
+  will allow the cookie to be set for any subsequent requests. Defaults to `true`.
+* `-x`, `--proxy http://localhost:3128`, config `proxy`: Proxy to use to connect to the remote resource.
+* `--allow-invalid-cert`, config `allowInvalidCert`: Allows self-signed SSL certificates. Defaults to `false`.
+* `--config config.js`: Load a configuration from the given file. All options can be configured in a file. Any options specified
+  in the command line will override options in the configuration file.
 * `--help`: Shows the help screen and exits.
 * `--version`: Shows the current version number and exits.
 
